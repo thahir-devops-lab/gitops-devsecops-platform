@@ -52,13 +52,14 @@ jobs:
             .
 
       - name: Run Trivy Scan
-  uses: aquasecurity/trivy-action@v0.33.1
-  with:
-    image-ref: ghcr.io/${{ github.repository_owner }}/gitops-platform:${IMAGE_TAG}
-    format: table
-    exit-code: 1
-    ignore-unfixed: true
-    severity: CRITICAL,HIGH
+        uses: aquasecurity/trivy-action@v0.33.1
+        with:
+          image-ref: ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:${IMAGE_TAG}
+          format: table
+          exit-code: 1
+          ignore-unfixed: true
+          severity: CRITICAL,HIGH
+
       - name: Push Latest
         run: |
           docker push ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:latest
