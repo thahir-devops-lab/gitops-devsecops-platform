@@ -10,7 +10,6 @@ env:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     permissions:
@@ -18,10 +17,11 @@ jobs:
       packages: write
 
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-python@v5
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
@@ -47,23 +47,23 @@ jobs:
       - name: Build Image
         run: |
           docker build \
-            -t ghcr.io/${{ github.repository_owner }}/gitops-platform:latest \
-            -t ghcr.io/${{ github.repository_owner }}/gitops-platform:${IMAGE_TAG} \
+            -t ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:latest \
+            -t ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:${IMAGE_TAG} \
             .
-            - name: Run Trivy Scan
-        uses: aquasecurity/trivy-action@master
+
+      - name: Run Trivy Scan
+        uses: aquasecurity/trivy-action@0.28.0  # Updated from deprecated master branch tag
         with:
-          image-ref: ghcr.io/${{ github.repository_owner }}/gitops-platform:${IMAGE_TAG}
-          format: table
+          image-ref: ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:${IMAGE_TAG}
+          format: 'table'
           exit-code: 1
           ignore-unfixed: true
-          severity: CRITICAL,HIGH
+          severity: 'CRITICAL,HIGH'
 
-          
       - name: Push Latest
         run: |
-          docker push ghcr.io/${{ github.repository_owner }}/gitops-platform:latest
+          docker push ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:latest
 
       - name: Push Version Tag
         run: |
-          docker push ghcr.io/${{ github.repository_owner }}/gitops-platform:${IMAGE_TAG}
+          docker push ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:${IMAGE_TAG}
