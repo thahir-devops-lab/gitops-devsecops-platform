@@ -19,9 +19,9 @@ spec:
     spec:
       containers:
       - name: gitops-platform
-        image: gitops-platform:v2
+        image: ghcr.io/thahir-devops-lab/gitops-platform:latest
 
-        imagePullPolicy: Never
+        imagePullPolicy: Always
 
         ports:
         - containerPort: 5000
