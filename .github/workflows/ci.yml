@@ -5,10 +5,17 @@ on:
     branches:
       - main
 
+env:
+  IMAGE_NAME: gitops-platform
+
 jobs:
   build:
 
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
 
     steps:
 
@@ -26,6 +33,17 @@ jobs:
         run: |
           pytest app/
 
-      - name: Build Docker Image
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build Image
         run: |
-          docker build -t gitops-platform:test .
+          docker build -t ghcr.io/${{ github.repository_owner }}/gitops-platform:latest .
+
+      - name: Push Image
+        run: |
+          docker push ghcr.io/${{ github.repository_owner }}/gitops-platform:latest
