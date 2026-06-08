@@ -22,7 +22,7 @@ spec:
 
       containers:
       - name: gitops-platform
-        image: ghcr.io/thahir-devops-lab/gitops-platform:2813a0e
+        image: ghcr.io/thahir-devops-lab/gitops-platform:75b1f9a
 
         imagePullPolicy: Always
 
