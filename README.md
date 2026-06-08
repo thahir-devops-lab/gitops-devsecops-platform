@@ -1,20 +1,125 @@
-# GitOps DevSecOps Platform
+GitOps DevSecOps Platform
 
-A production-grade DevOps project demonstrating:
+A complete GitOps-driven DevSecOps platform demonstrating containerization, CI/CD automation, Kubernetes deployment, monitoring, and observability.
 
-- Docker
-- Kubernetes
-- GitHub Actions
-- ArgoCD
-- Terraform
-- SonarQube
-- Trivy
-- HashiCorp Vault
+Overview
 
-## Project Goal
+This project showcases a modern cloud-native delivery workflow using GitOps principles. Application deployments are managed through ArgoCD, container images are built and scanned through GitHub Actions, and monitoring is implemented using Prometheus and Grafana.
 
-Build a Zero-Trust GitOps Delivery Pipeline from scratch.
+Architecture
 
-## Status
+Developer
+    ↓
+GitHub Repository
+    ↓
+GitHub Actions
+    ↓
+Docker Build
+    ↓
+Trivy Security Scan
+    ↓
+GitHub Container Registry (GHCR)
+    ↓
+ArgoCD
+    ↓
+Kubernetes (Minikube)
+    ↓
+Prometheus
+    ↓
+Grafana
 
-🚧 In Progress
+Technology Stack
+
+* Python Flask
+* Docker
+* GitHub Actions
+* GitHub Container Registry (GHCR)
+* Kubernetes
+* ArgoCD
+* Prometheus
+* Grafana
+* Terraform
+
+Features
+
+CI/CD
+
+* Automated GitHub Actions workflow
+* Automated Docker image builds
+* Container image vulnerability scanning using Trivy
+* Push images to GHCR
+* Automatic manifest updates
+
+GitOps
+
+* ArgoCD continuous deployment
+* Automatic synchronization
+* Self-healing deployments
+* Git as the single source of truth
+
+Kubernetes
+
+* Deployment with 3 replicas
+* Service-based networking
+* Rolling updates
+* Image pull secrets for private registry access
+
+Monitoring & Observability
+
+* Prometheus metrics collection
+* ServiceMonitor-based service discovery
+* Grafana dashboards
+* Application metrics endpoint
+
+Project Status
+
+✅ Fully Functional Local Environment
+
+Implemented and verified:
+
+* Kubernetes Deployment
+* GitHub Actions CI/CD
+* ArgoCD GitOps Workflow
+* Prometheus Monitoring
+* Grafana Dashboards
+* Application Metrics Collection
+
+Screenshots
+
+GitHub Actions Pipeline
+
+(Add screenshot)
+
+ArgoCD Application Dashboard
+
+(Add screenshot)
+
+Prometheus Targets
+
+(Add screenshot)
+
+Grafana Dashboard
+
+(Add screenshot)
+
+Running Application
+
+(Add screenshot)
+
+Repository Structure
+
+.
+├── app/
+├── docker/
+├── gitops/
+├── kubernetes/
+├── terraform/
+└── .github/workflows/
+
+Future Enhancements
+
+* Deploy to AWS EKS
+* Terraform-based infrastructure provisioning
+* Alertmanager notifications
+* Loki log aggregation
+* Advanced security scanning
