@@ -17,6 +17,9 @@ spec:
         app: gitops-platform
 
     spec:
+      imagePullSecrets:
+      - name: ghcr-secret
+
       containers:
       - name: gitops-platform
         image: ghcr.io/thahir-devops-lab/gitops-platform:latest
