@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: write # Upgraded from read to write so GitHub Actions can push manifest changes back to the repo
+      contents: write
       packages: write
 
     steps:
@@ -86,7 +86,13 @@ jobs:
 
       - name: Update Kubernetes Manifest
         run: |
+          echo "Before:"
+          grep image gitops/dev/deployment.yaml
+
           sed -i "s|image: .*|image: ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}|g" gitops/dev/deployment.yaml
+
+          echo "After:"
+          grep image gitops/dev/deployment.yaml
 
       - name: Commit Updated Manifest
         run: |
@@ -95,8 +101,11 @@ jobs:
 
           git add gitops/dev/deployment.yaml
 
-          git diff --staged --quiet || git commit -m "Update image to ${{ env.IMAGE_TAG }}"
+          echo "Git Status:"
+          git status
+
+          git commit -m "Update image to ${{ env.IMAGE_TAG }}" || echo "No changes to commit"
 
       - name: Push Manifest Changes
         run: |
-          git push
+          git push origin main
