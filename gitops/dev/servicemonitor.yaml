@@ -4,6 +4,8 @@ kind: ServiceMonitor
 metadata:
   name: gitops-platform
   namespace: monitoring
+  labels:
+    release: monitoring
 
 spec:
   selector:
