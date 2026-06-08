@@ -84,27 +84,27 @@ Implemented and verified:
 * Grafana Dashboards
 * Application Metrics Collection
 
-Screenshots
+## Screenshots
 
-GitHub Actions Pipeline
+### GitHub Actions Pipeline
 
-(Add screenshot)
+GitHub Actions
 
-ArgoCD Application Dashboard
+### ArgoCD Dashboard
 
-(Add screenshot)
+ArgoCD
 
-Prometheus Targets
+### Prometheus Targets
 
-(Add screenshot)
+Prometheus
 
-Grafana Dashboard
+### Grafana Dashboard
 
-(Add screenshot)
+Grafana
 
-Running Application
+### Running Application
 
-(Add screenshot)
+Application
 
 Repository Structure
 
