@@ -1,0 +1,20 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+
+metadata:
+  name: gitops-platform
+  namespace: monitoring
+
+spec:
+  selector:
+    matchLabels:
+      app: gitops-platform
+
+  namespaceSelector:
+    matchNames:
+      - default
+
+  endpoints:
+    - port: http
+      path: /
+      interval: 15s
